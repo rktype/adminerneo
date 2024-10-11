@@ -1,16 +1,24 @@
-FROM adminer:4.8.1
+FROM webdevops/php-nginx:8.3-alpine
+ARG ADMINER_VERSION=4.9.3
+ARG PEMATON_THEME_VERSION=1.7.2
 
-USER root
+# Installing Adminer and theme
+RUN wget https://github.com/pematon/adminer/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php -O /app/adminer.php \
+    # Pematon theme
+    && wget https://github.com/pematon/adminer-theme/archive/refs/tags/v${PEMATON_THEME_VERSION}.tar.gz -O /tmp/adminer-theme.tar.gz \
+    && tar -xf /tmp/adminer-theme.tar.gz -C /tmp \
+    && cp -R /tmp/adminer-theme-${PEMATON_THEME_VERSION}/lib/* /app/ \
+    # Adminer plugin file
+    && wget https://github.com/pematon/adminer/archive/refs/tags/v${ADMINER_VERSION}.tar.gz -O /tmp/adminer.tar.gz \
+    && tar -xf /tmp/adminer.tar.gz -C /tmp \
+    && cp /tmp/adminer-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
+    && rm -rf /tmp/*
 
-RUN apt-get update \
-    && apt-get install -y git openssh-client \
-    && rm -rf /var/lib/apt/lists/*
+# Moving default port from 80 to 8080
+RUN sed -i 's/listen 80/listen 8080/g' /opt/docker/etc/nginx/vhost.conf \
+    && sed -i 's/listen \[::\]:80/listen \[::\]:8080/g' /opt/docker/etc/nginx/vhost.conf
 
-RUN cd /tmp \
-    && git clone https://github.com/pematon/adminer-theme.git \
-    && cp -R /tmp/adminer-theme/lib/* /var/www/html \
-    && echo "<?php include __DIR__.'/../plugins/AdminerTheme.php'; if(empty(getenv('ADMINER_DESIGN'))) return new AdminerTheme(getenv('PEMATON_THEME') ?: 'default-blue');" > /var/www/html/plugins-enabled/adminer-theme.php \
-    && echo "upload_max_filesize=1024M" >> /etc/php/7.4/cli/conf.d/99-upload-max-filesize.ini \
-    && echo "post_max_size=1024M" >> /etc/php/7.4/cli/conf.d/99-upload-max-filesize.ini
+# Copying index.php
+COPY ./index.php /app/index.php
 
-USER adminer
+EXPOSE 8080
