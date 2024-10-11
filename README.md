@@ -9,11 +9,11 @@ Based on [Adminer (Pematon version)](https://github.com/pematon/adminer) with pr
 Set the default server host
 ### ADMINER_DEFAULT_DRIVER
 Set the default database driver
-- mysql
-- sqlite
-- sqlite2
-- pgsql
-- oracle
-- mssql
-- mongo
-- elastic
+- `mysql`
+- `sqlite`
+- `sqlite2`
+- `pgsql`
+- `oracle`
+- `mssql`
+- `mongo`
+- `elastic`
