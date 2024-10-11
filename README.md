@@ -3,8 +3,8 @@ Based on [Adminer (Pematon version)](https://github.com/pematon/adminer) with pr
 ## Environment variables
 ### ADMINER_ENV
 - `local` => green theme
-- `dev`  `test`  `stage`  `staging` => blue theme
-- `prod`  `production` => orange theme (default)
+- `dev` | `test` | `stage` | `staging` => blue theme
+- `prod` | `production` => orange theme (default)
 ### ADMINER_DEFAULT_SERVER
 Set the default server host
 ### ADMINER_DEFAULT_DRIVER
