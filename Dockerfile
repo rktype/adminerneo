@@ -1,5 +1,5 @@
 FROM webdevops/php-nginx:8.3-alpine
-ARG ADMINER_VERSION=4.9.3
+ARG ADMINER_VERSION=4.9.4
 ARG PEMATON_THEME_VERSION=1.7.2
 
 # Installing Adminer and theme
