@@ -1,6 +1,6 @@
 FROM webdevops/php-nginx:8.3-alpine
-ARG ADMINER_VERSION=4.9.4
-ARG PEMATON_THEME_VERSION=1.7.2
+ARG ADMINER_VERSION=4.10
+ARG PEMATON_THEME_VERSION=1.8
 
 # Installing Adminer and theme
 RUN wget https://github.com/pematon/adminer/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php -O /app/adminer.php \
