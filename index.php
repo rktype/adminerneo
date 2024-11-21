@@ -49,6 +49,10 @@ namespace docker {
 
                 return parent::_callParent($function, $args);
             }
+
+            function permanentLogin($create = false) {
+                return getenv('ADMINER_APP_KEY') ?? parent::permanentLogin($create);
+            }
         }
 
         $plugins = [];
