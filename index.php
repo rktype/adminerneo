@@ -7,6 +7,17 @@ namespace docker {
 
         class Adminer extends \AdminerPlugin
         {
+
+            private $drivers = [
+                'mysql',
+                'pgsql',
+                'sqlite',
+                'sqlite2',
+                'oracle',
+                'mssql',
+                'mongo',
+            ];
+
             function _callParent($function, $args)
             {
                 if ($function === 'loginForm') {
@@ -20,6 +31,13 @@ namespace docker {
                     // Set default drive
                     $driver = getenv('ADMINER_DEFAULT_DRIVER') ?? 'server';
                     $driver = $driver === 'mysql' ? 'server' : $driver;
+
+                    foreach ($this->drivers as $d) {
+                        if(array_key_exists($d, $_GET)) {
+                            $driver = $d;
+                            break;
+                        }
+                    }
 
                     $form = str_replace(' selected>', '>', $form);
                     $form = str_replace('value="' . $driver . '">', 'value="' . $driver . '" selected>', $form);
