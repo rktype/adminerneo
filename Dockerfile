@@ -11,7 +11,10 @@ RUN wget https://github.com/pematon/adminer/releases/download/v${ADMINER_VERSION
     # Adminer plugin file
     && wget https://github.com/pematon/adminer/archive/refs/tags/v${ADMINER_VERSION}.tar.gz -O /tmp/adminer.tar.gz \
     && tar -xf /tmp/adminer.tar.gz -C /tmp \
+    # Importing plugin
     && cp /tmp/adminer-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
+    && cp /tmp/adminer-${ADMINER_VERSION}/plugins/login-ssl.php /app/plugins/login-ssl.php \
+    # Cleanup
     && rm -rf /tmp/*
 
 # Install dependencies

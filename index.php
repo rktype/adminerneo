@@ -50,12 +50,8 @@ namespace docker {
         require_once('plugins/AdminerTheme.php');
         $plugins[] = new \AdminerTheme($pematon_theme);
 
-        foreach (glob('plugins/*.php') as $plugin) {
-            if (in_array(basename($plugin), ['AdminerTheme.php', 'plugin.php'])) {
-                continue;
-            }
-            $plugins[] = require($plugin);
-        }
+        require_once('plugins/login-ssl.php');
+        $plugins[] = new \AdminerLoginSsl(["TrustServerCertificate" => getenv('MSSQL_TRUST_SERVER_CERTIFICATE') ?? false]);
 
         return new Adminer($plugins);
     }
