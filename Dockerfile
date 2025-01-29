@@ -3,17 +3,17 @@ ARG ADMINER_VERSION=4.13
 ARG PEMATON_THEME_VERSION=1.8.2
 
 # Installing Adminer and theme
-RUN wget https://github.com/pematon/adminer/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php -O /app/adminer.php \
+RUN wget https://github.com/adminerneo/adminerneo/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php -O /app/adminer.php \
     # Pematon theme
     && wget https://github.com/pematon/adminer-theme/archive/refs/tags/v${PEMATON_THEME_VERSION}.tar.gz -O /tmp/adminer-theme.tar.gz \
     && tar -xf /tmp/adminer-theme.tar.gz -C /tmp \
     && cp -R /tmp/adminer-theme-${PEMATON_THEME_VERSION}/lib/* /app/ \
     # Adminer plugin file
-    && wget https://github.com/pematon/adminer/archive/refs/tags/v${ADMINER_VERSION}.tar.gz -O /tmp/adminer.tar.gz \
+    && wget https://github.com/adminerneo/adminerneo/archive/refs/tags/v${ADMINER_VERSION}.tar.gz -O /tmp/adminer.tar.gz \
     && tar -xf /tmp/adminer.tar.gz -C /tmp \
     # Importing plugin
-    && cp /tmp/adminer-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
-    && cp /tmp/adminer-${ADMINER_VERSION}/plugins/login-ssl.php /app/plugins/login-ssl.php \
+    && cp /tmp/adminerneo-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
+    && cp /tmp/adminerneo-${ADMINER_VERSION}/plugins/login-ssl.php /app/plugins/login-ssl.php \
     # Cleanup
     && rm -rf /tmp/*
 
