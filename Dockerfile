@@ -2,6 +2,11 @@ FROM webdevops/php-nginx:8.3-alpine
 ARG ADMINER_VERSION=4.13
 ARG PEMATON_THEME_VERSION=1.8.2
 
+ENV SERVICE_NGINX_CLIENT_MAX_BODY_SIZE=512M
+ENV PHP_POST_MAX_SIZE=512M
+ENV PHP_UPLOAD_MAX_FILESIZE=512M
+ENV PHP_MEMORY_LIMIT=2G
+
 # Installing Adminer and theme
 RUN wget https://github.com/adminerneo/adminerneo/releases/download/v${ADMINER_VERSION}/adminer-${ADMINER_VERSION}.php -O /app/adminer.php \
     # Pematon theme
