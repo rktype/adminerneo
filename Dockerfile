@@ -1,5 +1,5 @@
 FROM webdevops/php-nginx:8.3-alpine
-ARG ADMINER_VERSION=4.14
+ARG ADMINER_VERSION=4.15
 ARG PEMATON_THEME_VERSION=1.8.2
 
 ENV SERVICE_NGINX_CLIENT_MAX_BODY_SIZE=512M
@@ -17,8 +17,8 @@ RUN wget https://github.com/adminerneo/adminerneo/releases/download/v${ADMINER_V
     && wget https://github.com/adminerneo/adminerneo/archive/refs/tags/v${ADMINER_VERSION}.tar.gz -O /tmp/adminer.tar.gz \
     && tar -xf /tmp/adminer.tar.gz -C /tmp \
     # Importing plugin
-    && cp /tmp/adminerneo-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
-    && cp /tmp/adminerneo-${ADMINER_VERSION}/plugins/login-ssl.php /app/plugins/login-ssl.php \
+    && cp /tmp/adminneo-${ADMINER_VERSION}/plugins/plugin.php /app/plugins/plugin.php \
+    && cp /tmp/adminneo-${ADMINER_VERSION}/plugins/login-ssl.php /app/plugins/login-ssl.php \
     # Cleanup
     && rm -rf /tmp/*
 
