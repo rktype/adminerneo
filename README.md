@@ -1,5 +1,5 @@
-# Adminer container with Pematon Theme
-Based on [Adminer (Pematon version)](https://github.com/pematon/adminer) with preinstalled [Pematon Theme](https://github.com/pematon/adminer-theme)
+# AdminNeo Docker Image with Pematon Theme
+Based on [AdminNeo](https://github.com/adminneo-org/adminneo) with preinstalled [Pematon Theme](https://github.com/pematon/adminer-theme)
 
 Docker hub: https://hub.docker.com/r/rktype/adminer
 
